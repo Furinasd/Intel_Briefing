@@ -7,7 +7,10 @@ import logging
 import sys
 from dotenv import load_dotenv
 
-load_dotenv()
+# Look for .env in current dir and up to two levels of parents
+load_dotenv(override=True)
+load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"), override=True)
+load_dotenv(os.path.join(os.path.dirname(__file__), "..", "..", ".env"), override=True)
 
 # --- Logging ---
 LOG_FORMAT = "%(asctime)s [%(levelname)s] %(name)s: %(message)s"
@@ -36,8 +39,8 @@ GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 PRODUCTHUNT_TOKEN = os.getenv("PRODUCTHUNT_TOKEN")
 
 # --- API Endpoints ---
-GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models"
-GEMINI_MODEL = "gemini-2.5-flash-lite"
+GEMINI_API_URL = os.getenv("GEMINI_API_ENDPOINT", "https://api.gptsapi.net").rstrip("/")
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-1.5-flash")
 XAI_BASE_URL = os.getenv("XAI_BASE_URL", "https://api.x.ai/v1/chat/completions")
 XAI_MODEL = os.getenv("XAI_MODEL", "grok-beta")
 GITHUB_API_URL = "https://api.github.com/graphql"
