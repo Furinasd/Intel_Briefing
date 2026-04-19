@@ -30,6 +30,7 @@ jobs:
           XAI_MODEL: grok-3
           PRODUCTHUNT_TOKEN: ${{ secrets.PRODUCTHUNT_TOKEN }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
         run: python run_mission.py
 
       - name: Deliver report to PWA

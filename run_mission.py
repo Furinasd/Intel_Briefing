@@ -7,6 +7,8 @@ import datetime
 from src.intel_collector import fetch_all_sources
 from src.report_generator import generate_report
 from src.config import setup_logging
+from src.external.feishu_push import push_to_feishu
+
 
 logger = logging.getLogger(__name__)
 
@@ -48,6 +50,17 @@ def generate_morning_report(days: int = 1):
         f.write(final_content)
 
     logger.info(f"简报已生成: {report_file}")
+
+    # 4. Push to Feishu (if configured)
+    webhook_url = os.getenv("FEISHU_WEBHOOK_URL")
+    if webhook_url:
+        logger.info("正在推送简报至飞书...")
+        try:
+            push_to_feishu(webhook_url, final_content)
+            logger.info("✅ 飞书推送成功！")
+        except Exception as e:
+            logger.error(f"❌ 飞书推送失败: {e}")
+
 
 
 if __name__ == "__main__":
