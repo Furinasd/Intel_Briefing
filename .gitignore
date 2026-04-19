@@ -56,3 +56,6 @@ src/generators/curator.py
 temp_*.csv
 debug_*.py
 *.bak
+
+# V1.1 COO Portfolio State
+portfolio.yaml

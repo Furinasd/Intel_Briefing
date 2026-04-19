@@ -1,0 +1,31 @@
+# 个人财富 COO - 持仓快照配置
+# 注意：此文件仅为示例。请复制此文件为 portfolio.yaml，并填入真实持仓。
+# portfolio.yaml 已被 .gitignore 忽略，确保不会上传至公开代码库。
+
+cash_usd: 50000.0
+
+positions:
+  - asset: "NVDA"
+    type: "stock"
+    avg_cost: 850.0
+    shares: 20
+    category: "Core"
+    notes: "AI硬件算力底座，长期持有"
+
+  - asset: "TSLA"
+    type: "stock"
+    avg_cost: 160.0
+    shares: 100
+    category: "Satellite"
+    notes: "FSD与RoboTaxi预期"
+
+  - asset: "BTC-USD"
+    type: "crypto"
+    avg_cost: 65000.0
+    shares: 0.5
+    category: "Core"
+    notes: "数字黄金储备"
+
+risk_management:
+  max_drawdown_alert: -0.20 # 触发 -20% 回撤警报
+  core_satellite_ratio: "8:2" # 核心与卫星仓位比例目标
